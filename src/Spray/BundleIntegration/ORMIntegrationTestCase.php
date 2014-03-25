@@ -2,6 +2,7 @@
 
 namespace Spray\BundleIntegration;
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
@@ -12,6 +13,12 @@ use InvalidArgumentException;
  */
 abstract class ORMIntegrationTestCase extends IntegrationTestCase
 {
+    public static function setUpBeforeClass()
+    {
+        var_dump('Registering before class');
+        AnnotationRegistry::registerFile('vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
+    }
+
     /**
      * Return where your fixtures are located
      * 
