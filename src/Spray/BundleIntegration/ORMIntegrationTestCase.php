@@ -6,7 +6,9 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\SchemaTool;
 use InvalidArgumentException;
+use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**
@@ -15,11 +17,18 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 abstract class ORMIntegrationTestCase extends IntegrationTestCase
 {
     /**
-     * Register annotation loading at first
-     * 
-     * @return void
+     * Since @beforeClass does not work...
      */
     public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+        static::registerAnnotationLoader();
+    }
+    
+    /**
+     * @return void
+     */
+    public static function registerAnnotationLoader()
     {
         AnnotationRegistry::registerFile('vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
     }
@@ -56,11 +65,31 @@ abstract class ORMIntegrationTestCase extends IntegrationTestCase
     }
     
     /**
+     * Since @before does not work...
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->createSchema();
+        $this->loadFixtures();
+    }
+    
+    /**
+     * 
+     */
+    public function createSchema()
+    {
+        $entityManager = $this->createEntityManager();
+        $tool = new SchemaTool($this->createEntityManager());
+        $tool->createSchema($entityManager->getMetadataFactory()->getAllMetadata());
+    }
+    
+    /**
      * @before
      */
     public function loadFixtures()
     {
-        $loader = new DataFixturesLoader($this->createContainer());
+        $loader = new ContainerAwareLoader($this->createContainer());
         foreach ($this->registerFixturePaths() as $path) {
             if (is_dir($path)) {
                 $loader->loadFromDirectory($path);
@@ -77,5 +106,23 @@ abstract class ORMIntegrationTestCase extends IntegrationTestCase
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
         $executor = new ORMExecutor($this->createEntityManager(), $purger);
         $executor->execute($fixtures);
+    }
+    
+    /**
+     * Since @after does not work...
+     */
+    public function tearDown()
+    {
+        $this->dropSchema();
+    }
+    
+    /**
+     * 
+     */
+    public function dropSchema()
+    {
+        $entityManager = $this->createEntityManager();
+        $tool = new SchemaTool($this->createEntityManager());
+        $tool->dropSchema($entityManager->getMetadataFactory()->getAllMetadata());
     }
 }
