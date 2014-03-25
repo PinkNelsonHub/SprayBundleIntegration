@@ -23,11 +23,6 @@ class ORMIntegrationTest extends ORMIntegrationTestCase
         );
     }
     
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        $loader->load(__DIR__ . '/config/config.yml');
-    }
-    
     public function testFooIsPersisted()
     {
         $foo = new Foo();

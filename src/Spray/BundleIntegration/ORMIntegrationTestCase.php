@@ -7,18 +7,32 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
 use InvalidArgumentException;
+use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**
  * ORMIntegrationTestCase
  */
 abstract class ORMIntegrationTestCase extends IntegrationTestCase
 {
+    /**
+     * Register annotation loading at first
+     * 
+     * @return void
+     */
     public static function setUpBeforeClass()
     {
-        var_dump('Registering before class');
         AnnotationRegistry::registerFile('vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        parent::registerContainerConfiguration($loader);
+        $loader->load(__DIR__ . '/Resources/config/doctrine.yml');
+    }
+    
     /**
      * Return where your fixtures are located
      * 

@@ -42,7 +42,7 @@ abstract class IntegrationTestCase extends PHPUnit_Framework_TestCase
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        
+        $loader->load(__DIR__ . '/Resources/config/framework.yml');
     }
     
     /**
