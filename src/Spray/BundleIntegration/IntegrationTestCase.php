@@ -32,7 +32,7 @@ abstract class IntegrationTestCase extends PHPUnit_Framework_TestCase
     /**
      * @after
      */
-    public function destroyAppKernel()
+    public function destroyKernel()
     {
         $this->kernel = null;
     }
