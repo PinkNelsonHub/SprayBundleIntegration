@@ -30,14 +30,6 @@ abstract class IntegrationTestCase extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @after
-     */
-    public function destroyKernel()
-    {
-        $this->kernel = null;
-    }
-    
-    /**
      * {@inheritdoc}
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
