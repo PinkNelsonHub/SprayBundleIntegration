@@ -2,10 +2,7 @@
 
 namespace Spray\BundleIntegration;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
