@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManager;
 use InvalidArgumentException;
 
 /**
- * PersistenceIntegrationTestCase
+ * ORMIntegrationTestCase
  */
 abstract class ORMIntegrationTestCase extends IntegrationTestCase
 {
