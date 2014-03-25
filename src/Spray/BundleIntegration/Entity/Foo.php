@@ -2,7 +2,7 @@
 
 namespace Spray\BundleIntegration\Entity;
 
-use Doctine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Foo
