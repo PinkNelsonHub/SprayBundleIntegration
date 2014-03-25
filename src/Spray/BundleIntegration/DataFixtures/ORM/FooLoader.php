@@ -1,6 +1,6 @@
 <?php
 
-namespace Spray\BundleIntegration\Fixtures\ORM;
+namespace Spray\BundleIntegration\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
