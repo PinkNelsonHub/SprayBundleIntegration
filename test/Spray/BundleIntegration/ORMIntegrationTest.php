@@ -38,4 +38,14 @@ class ORMIntegrationTest extends ORMIntegrationTestCase
         );
     }
     
+    public function testFooIsRemoved()
+    {
+        $manager = $this->createEntityManager();
+        $foo     = $manager->find('Spray\BundleIntegration\Entity\Foo', 1);
+        $manager->remove($foo);
+        $manager->flush();
+        
+        $this->assertNull($manager->find('Spray\BundleIntegration\Entity\Foo', 1));
+    }
+    
 }
