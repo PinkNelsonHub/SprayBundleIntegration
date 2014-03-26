@@ -3,11 +3,13 @@
 namespace Spray\BundleIntegration\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Foo
  * 
  * @ORM\Entity
+ * @UniqueEntity("name")
  */
 class Foo
 {
