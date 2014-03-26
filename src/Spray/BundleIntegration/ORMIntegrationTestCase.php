@@ -70,14 +70,14 @@ abstract class ORMIntegrationTestCase extends IntegrationTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->createSchema();
+        $this->loadSchema();
         $this->loadFixtures();
     }
     
     /**
      * 
      */
-    public function createSchema()
+    public function loadSchema()
     {
         $entityManager = $this->createEntityManager();
         $tool = new SchemaTool($this->createEntityManager());
@@ -85,7 +85,7 @@ abstract class ORMIntegrationTestCase extends IntegrationTestCase
     }
     
     /**
-     * @before
+     * 
      */
     public function loadFixtures()
     {
@@ -106,23 +106,5 @@ abstract class ORMIntegrationTestCase extends IntegrationTestCase
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
         $executor = new ORMExecutor($this->createEntityManager(), $purger);
         $executor->execute($fixtures);
-    }
-    
-    /**
-     * Since @after does not work...
-     */
-    public function tearDown()
-    {
-        $this->dropSchema();
-    }
-    
-    /**
-     * 
-     */
-    public function dropSchema()
-    {
-        $entityManager = $this->createEntityManager();
-        $tool = new SchemaTool($this->createEntityManager());
-        $tool->dropSchema($entityManager->getMetadataFactory()->getAllMetadata());
     }
 }
