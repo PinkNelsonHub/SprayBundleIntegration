@@ -22,15 +22,16 @@ abstract class ORMIntegrationTestCase extends IntegrationTestCase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::registerAnnotationLoader();
+        static::registerAnnotations();
     }
     
     /**
      * @return void
      */
-    public static function registerAnnotationLoader()
+    public static function registerAnnotations()
     {
         AnnotationRegistry::registerFile('vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
+        AnnotationRegistry::registerFile('vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Validator/Constraints/UniqueEntity.php');
     }
 
     /**
