@@ -2,3 +2,4 @@ framework:
     translator:      { fallback: "en" }
     default_locale:  "en"
     secret:          "secret"
+    form:            ~
