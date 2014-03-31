@@ -25,7 +25,7 @@ class IntegrationKernel extends Kernel
     public function __construct(IntegratableTestCaseInterface $testCase)
     {
         $this->testCase = $testCase;
-        parent::__construct('integration', true);
+        parent::__construct('integration', false);
     }
     
     /**
