@@ -2,6 +2,7 @@
 
 namespace Spray\BundleIntegration;
 
+use org\bovigo\vfs\vfsStream;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
