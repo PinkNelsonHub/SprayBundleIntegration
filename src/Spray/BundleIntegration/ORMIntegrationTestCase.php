@@ -32,6 +32,7 @@ abstract class ORMIntegrationTestCase extends IntegrationTestCase
     {
         AnnotationRegistry::registerFile('vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
         AnnotationRegistry::registerFile('vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Validator/Constraints/UniqueEntity.php');
+        AnnotationRegistry::registerAutoloadNamespace('Symfony\Component\Validator\Constraints', 'vendor/symfony/symfony/src');
     }
 
     /**
