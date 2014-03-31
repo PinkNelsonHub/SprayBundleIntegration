@@ -4,6 +4,7 @@ namespace Spray\BundleIntegration\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Foo
@@ -25,7 +26,8 @@ class Foo
     /**
      * @var string
      * 
-     * @ORM\Column(type="string") 
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     private $name;
     
