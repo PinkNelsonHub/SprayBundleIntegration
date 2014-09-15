@@ -3,3 +3,4 @@ framework:
     default_locale:  "en"
     secret:          "secret"
     form:            ~
+    session:         ~
