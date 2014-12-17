@@ -4,3 +4,5 @@ framework:
     secret:          "secret"
     form:            ~
     session:         ~
+    router:
+        resource: "routing.yml"
