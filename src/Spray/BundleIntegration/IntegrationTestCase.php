@@ -5,6 +5,7 @@ namespace Spray\BundleIntegration;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -44,5 +45,13 @@ abstract class IntegrationTestCase extends PHPUnit_Framework_TestCase
     protected function createContainer()
     {
         return $this->createKernel()->getContainer();
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function isContainerManuallyCompiled()
+    {
+        return false;
     }
 }

@@ -26,4 +26,12 @@ interface IntegratableTestCaseInterface
      * @return void
      */
     public function registerContainerConfiguration(LoaderInterface $loader);
+    
+    /**
+     * Should return true if container is compiled in the test manually (usefull
+     * for overriding container services with mocks)
+     * 
+     * @return boolean
+     */
+    public function isContainerManuallyCompiled();
 }

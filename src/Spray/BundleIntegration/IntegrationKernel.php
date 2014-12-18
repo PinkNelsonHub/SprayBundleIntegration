@@ -63,7 +63,9 @@ class IntegrationKernel extends Kernel
     {
         $this->container = $this->buildContainer();
         $this->container->set('kernel', $this);
-        $this->container->compile();
+        if ( ! $this->testCase->isContainerManuallyCompiled()) {
+            $this->container->compile();
+        }
     }
     
     /**
